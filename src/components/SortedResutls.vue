@@ -1,19 +1,17 @@
 <template>
 <div id="sorted-results">
-  <div style="position:absolute;top:20px;height:80px;width:100%">
+  <div class="fixed-top" style="top: 30px">
     <p>You are finished!</p>
     <p>Here are your results:</p>
   </div>
-  <div style="overflow-y: auto; margin-top: 80px; height: calc(100vh - 210px)">
-    <p>
+  <div style="position:absolute; top:120px; left:0; right:0; bottom:100px; overflow-y: auto">
       <ol>
         <li v-for="(phrase, index) in results" v-bind:key="`phrase-${index}`">{{ phrase }}</li>
       </ol>
-    </p>
   </div>
-  <div style="position:absolute;bottom:20px;height:50px;">
-    <button v-on:click.prevent="onBack">Back</button>
-    <button v-on:click.prevent="onRestart">Restart</button>
+  <div class="fixed-bottom" style="bottom: 30px">
+    <b-button v-on:click.prevent="onBack">Back</b-button>
+    <b-button v-on:click.prevent="onRestart">Restart</b-button>
   </div>
 </div>
 </template>
@@ -39,9 +37,7 @@ export default {
 
 <style scoped>
 #sorted-results {
-  overflow-y: hidden;
-  justify-content: center;
-  display: flex;
+
 }
 
 #sorted-results ol {

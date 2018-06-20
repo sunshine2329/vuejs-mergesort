@@ -11,8 +11,8 @@ export default {
 </script>
 
 <style>
-body {
-  padding: 40px 30px;
+html, body {
+  height: 100%;
 }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -20,12 +20,9 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 100%;
+  /* width: 100%; */
+  padding: 20px;
   height: 100%;
-}
-#app button {
-  font: 400 16px system-ui;
-  min-width: 100px;
-  padding: 8px;
+  overflow: hidden;
 }
 </style>

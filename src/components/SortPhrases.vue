@@ -66,7 +66,6 @@ export default {
 
 <style scoped>
 #sort-phrases {
-  flex: 1;
-  height: 100%;
+  height: 100%
 }
 </style>

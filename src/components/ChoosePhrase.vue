@@ -1,22 +1,20 @@
-<style scoped>
-#choose-phrase button {
-  width: 100%;
-}
-</style>
-
 <template>
-<div id="choose-phrase">
+<div id="choose-phrase" ref="choosePhrase">
   <div style="text-align: left">
-    <button v-on:click.prevent="onBack" style="width: auto;">Back</button>
+    <b-button v-on:click.prevent="onBack" style="width: auto;">Back</b-button>
   </div>
   <p>Instructions:</p>
   <p>Choose which one you fee is the better of the two options.</p>
-  <p style="margin-top: 30px">
-    <button v-on:click.prevent="sortPhrases(true)">{{ phrase1 }}</button>
-  </p>
-  <p>
-    <button v-on:click.prevent="sortPhrases(false)">{{ phrase2 }}</button>
-  </p>
+  <transition name="fade">
+    <div v-if="show">
+      <p style="margin-top: 30px">
+        <button ref="firstButton" v-on:click="sortPhrases(true)" class=" btn btn-outline-primary">{{ phrase1 }}</button>
+      </p>
+      <p>
+        <button ref="secondButton" v-on:click="sortPhrases(false)" class="btn btn-outline-primary">{{ phrase2 }}</button>
+      </p>
+    </div>
+  </transition>
 </div>
 </template>
 
@@ -37,7 +35,8 @@ export default {
       phraseSet2: [],
       sortedPhrases: [],
       phrase1: '',
-      phrase2: ''
+      phrase2: '',
+      show: true
     }
   },
   created () {
@@ -108,6 +107,17 @@ export default {
       }
     },
     sortPhrases: function (isFirst) {
+      const self = this
+      this.$refs.firstButton.blur()
+      this.$refs.secondButton.blur()
+      setTimeout(function () {
+        self.show = false
+        setTimeout(function () {
+          self.updatePhrases(isFirst)
+        })
+      }, 300)
+    },
+    updatePhrases: function (isFirst) {
       this.history.push({
         leftPhrasesSet: this.leftPhrasesSet.slice(),
         sortedPhrasesSet: this.sortedPhrasesSet.slice(),
@@ -125,6 +135,7 @@ export default {
         this.phraseSet2 = this.phraseSet2.slice(1)
       }
       this.getNextPhrases()
+      this.show = true
     },
     onBack: function () {
       if (this.history.length === 0) {
@@ -143,3 +154,17 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#choose-phrase button {
+  width: 100%;
+  white-space: normal !important;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

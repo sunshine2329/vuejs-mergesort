@@ -106,17 +106,17 @@ export default {
         this.phrase1 = this.phraseSet1[0]
         this.phrase2 = this.phraseSet2[0]
       }
+    },
+    sortPhrases: function (isFirst) {
       this.history.push({
-        leftPhrasesSet: this.leftPhrasesSet,
-        sortedPhrasesSet: this.sortedPhrasesSet,
-        phraseSet1: this.phraseSet1,
-        phraseSet2: this.phraseSet2,
-        sortedPhrases: this.sortedPhrases,
+        leftPhrasesSet: this.leftPhrasesSet.slice(),
+        sortedPhrasesSet: this.sortedPhrasesSet.slice(),
+        phraseSet1: this.phraseSet1.slice(),
+        phraseSet2: this.phraseSet2.slice(),
+        sortedPhrases: this.sortedPhrases.slice(),
         phrase1: this.phrase1,
         phrase2: this.phrase2
       })
-    },
-    sortPhrases: function (isFirst) {
       if (isFirst) {
         this.sortedPhrases.push(this.phrase1)
         this.phraseSet1 = this.phraseSet1.slice(1)

@@ -41,6 +41,7 @@ export default {
     }
   },
   created () {
+    console.log('created')
     this.initialize()
     this.getNextPhrases()
   },
@@ -49,6 +50,13 @@ export default {
       for (var i = 0; i < this.phrases.length; i++) {
         this.leftPhrasesSet.push([this.phrases[i]])
       }
+      this.sortedPhrasesSet = []
+      this.history = []
+      this.phraseSet1 = []
+      this.phraseSet2 = []
+      this.sortedPhrases = []
+      this.phrase1 = ''
+      this.phrase2 = ''
     },
     getNextPhrasesSets: function () {
       var len = this.leftPhrasesSet.length

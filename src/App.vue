@@ -26,5 +26,6 @@ body {
 #app button {
   font: 400 16px system-ui;
   min-width: 100px;
+  padding: 8px;
 }
 </style>

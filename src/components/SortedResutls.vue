@@ -4,9 +4,9 @@
     <p>You are finished!</p>
     <p>Here are your results:</p>
   </div>
-  <div style="overflow: hidden;">
+  <div style="overflow-y: auto; margin-top: 80px; height: calc(100vh - 210px)">
     <p>
-      <ol style="overflow-y: auto; margin-top: 80px; height: calc(100vh - 210px)">
+      <ol>
         <li v-for="(phrase, index) in results" v-bind:key="`phrase-${index}`">{{ phrase }}</li>
       </ol>
     </p>
@@ -39,7 +39,7 @@ export default {
 
 <style scoped>
 #sorted-results {
-  overflow-y: auto;
+  overflow-y: hidden;
   justify-content: center;
   display: flex;
 }

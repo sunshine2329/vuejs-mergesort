@@ -36,13 +36,15 @@ export default {
       sortedPhrases: [],
       phrase1: '',
       phrase2: '',
-      show: true
+      show: false
     }
   },
-  created () {
-    console.log('created')
-    this.initialize()
-    this.getNextPhrases()
+  mounted () {
+    const self = this
+    setTimeout(function () {
+      self.initialize()
+      self.getNextPhrases()
+    }, 200)
   },
   methods: {
     initialize: function () {
@@ -105,6 +107,7 @@ export default {
         this.phrase1 = this.phraseSet1[0]
         this.phrase2 = this.phraseSet2[0]
       }
+      this.show = true
     },
     sortPhrases: function (isFirst) {
       const self = this
@@ -114,7 +117,7 @@ export default {
         self.show = false
         setTimeout(function () {
           self.updatePhrases(isFirst)
-        })
+        }, 150)
       }, 300)
     },
     updatePhrases: function (isFirst) {
@@ -135,7 +138,6 @@ export default {
         this.phraseSet2 = this.phraseSet2.slice(1)
       }
       this.getNextPhrases()
-      this.show = true
     },
     onBack: function () {
       if (this.history.length === 0) {
@@ -162,7 +164,7 @@ export default {
 }
 
 .fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
+  transition: opacity .1s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
